@@ -31,14 +31,13 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
     };
 
     const handleClick = (movie) => {
+        const trail = " trailer"
         if (trailerUrl) {
             setTrailerUrl("");
         }
         else {
-            movieTrailer(movie?.name || movie?.title || movie?.original_name || movie?.original_title || "inception")
+            movieTrailer(movie?.name + trail || movie?.title + trail || movie?.original_name + trail || movie?.original_title + trail || "inception")
                 .then(url => {
-                    console.log(url);
-                    console.log(typeof (movie));
                     var video_id = url.split('v=')[1];
                     var ampersandPosition = video_id.indexOf('&');
                     if (ampersandPosition !== - 1) {
@@ -50,9 +49,6 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
                     // console.log(urlParams.get("v"));
                 })
                 .catch(err => console.log(err))
-
-            // const video = await yt.search(movie?.name || "")
-            console.log("nik");
         }
     }
     return (
